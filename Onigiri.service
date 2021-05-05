@@ -1,0 +1,11 @@
+[Unit]
+Description=Onigiri
+After=network-online.target rethinkdb.target
+
+[Service]
+ExecStart=dotnet /home/zirk/bots/Onigiri/Onigiri.dll
+WorkingDirectory=/home/zirk/bots/Onigiri
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
