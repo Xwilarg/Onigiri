@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onigiri", "Onigiri\Onigiri.csproj", "{9E3A42DE-F1E9-4267-9551-0F7CBA785C4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E3A42DE-F1E9-4267-9551-0F7CBA785C4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E3A42DE-F1E9-4267-9551-0F7CBA785C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E3A42DE-F1E9-4267-9551-0F7CBA785C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E3A42DE-F1E9-4267-9551-0F7CBA785C4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A45311F6-8DD8-4FAB-BA07-9745453D0D15}
+	EndGlobalSection
+EndGlobal

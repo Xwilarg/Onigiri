@@ -1,0 +1,3 @@
+[submodule "Onigiri/Discord-Utils"]
+	path = Onigiri/Discord-Utils
+	url = https://github.com/Xwilarg/Discord-Utils
