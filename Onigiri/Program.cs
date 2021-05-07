@@ -87,8 +87,14 @@ if (subs.Length == 0)
 
 Console.WriteLine("Current subscriptions:\n" + string.Join("\n\n", subs.Select(x => x.Value.ToString())));
 
+bool didStartStream = false;
 client.Ready += () =>
 {
+    if (didStartStream)
+    {
+        return Task.CompletedTask;
+    }
+    didStartStream = true;
     var guild = client.GetGuild(ulong.Parse(credentials.GuildId));
     if (guild == null)
         throw new NullReferenceException("Guild is null");
@@ -97,16 +103,19 @@ client.Ready += () =>
         throw new NullReferenceException("Text channel is null");
 
     _ = Task.Run(async () => {
-        await twitterClient.NextTweetStreamAsync((tweet) =>
+        while (true)
         {
-            textChan.SendMessageAsync(embed: new EmbedBuilder
+            await twitterClient.NextTweetStreamAsync((tweet) =>
             {
-                Title = tweet.Author.Name,
-                ImageUrl = tweet.Author.ProfileImageUrl,
-                Color = Color.Blue,
-                Description = tweet.Text
-            }.Build());
-        }, new[] { UserOption.Profile_Image_Url });
+                textChan.SendMessageAsync(embed: new EmbedBuilder
+                {
+                    Title = tweet.Author.Name,
+                    ThumbnailUrl = tweet.Author.ProfileImageUrl,
+                    Color = Color.Blue,
+                    Description = tweet.Text
+                }.Build());
+            }, new[] { UserOption.Profile_Image_Url });
+        }
     });
 
     return Task.CompletedTask;
