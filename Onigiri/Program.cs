@@ -107,13 +107,25 @@ client.Ready += () =>
         {
             await twitterClient.NextTweetStreamAsync((tweet) =>
             {
-                textChan.SendMessageAsync(embed: new EmbedBuilder
+                do
                 {
-                    Title = tweet.Author.Name,
-                    ThumbnailUrl = tweet.Author.ProfileImageUrl,
-                    Color = Color.Blue,
-                    Description = tweet.Text
-                }.Build());
+                    try
+                    {
+                        textChan.SendMessageAsync(embed: new EmbedBuilder
+                        {
+                            Title = tweet.Author.Name,
+                            ThumbnailUrl = tweet.Author.ProfileImageUrl,
+                            Color = Color.Blue,
+                            Description = tweet.Text
+                        }.Build());
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        Utils.LogErrorAsync(new LogMessage(LogSeverity.Error, e.Source, e.Message, e)).GetAwaiter().GetResult();
+                        Task.Delay(2000);
+                    }
+                } while (true);
             }, new[] { UserOption.Profile_Image_Url });
         }
     });
