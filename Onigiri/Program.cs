@@ -105,28 +105,36 @@ client.Ready += () =>
     _ = Task.Run(async () => {
         while (true)
         {
-            await twitterClient.NextTweetStreamAsync((tweet) =>
+            try
             {
-                do
+                await twitterClient.NextTweetStreamAsync(async (tweet) =>
                 {
-                    try
+                    do
                     {
-                        textChan.SendMessageAsync(embed: new EmbedBuilder
+                        try
                         {
-                            Title = tweet.Author.Name,
-                            ThumbnailUrl = tweet.Author.ProfileImageUrl,
-                            Color = Color.Blue,
-                            Description = tweet.Text
-                        }.Build());
-                        break;
-                    }
-                    catch (Exception e)
-                    {
-                        Utils.LogErrorAsync(new LogMessage(LogSeverity.Error, e.Source, e.Message, e)).GetAwaiter().GetResult();
-                        Task.Delay(2000);
-                    }
-                } while (true);
-            }, new[] { UserOption.Profile_Image_Url });
+                            await textChan.SendMessageAsync(embed: new EmbedBuilder
+                            {
+                                Title = tweet.Author.Name,
+                                ThumbnailUrl = tweet.Author.ProfileImageUrl,
+                                Color = Color.Blue,
+                                Description = tweet.Text
+                            }.Build());
+                            break;
+                        }
+                        catch (Exception e)
+                        {
+                            Utils.LogErrorAsync(new LogMessage(LogSeverity.Error, e.Source, e.Message, e)).GetAwaiter().GetResult();
+                            await Task.Delay(2000);
+                        }
+                    } while (true);
+                }, new[] { UserOption.Profile_Image_Url });
+            }
+            catch (Exception e)
+            {
+                Utils.LogErrorAsync(new LogMessage(LogSeverity.Error, e.Source, e.Message, e)).GetAwaiter().GetResult();
+                await Task.Delay(5000);
+            }
         }
     });
 
