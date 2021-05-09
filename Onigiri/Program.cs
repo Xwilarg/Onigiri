@@ -118,7 +118,8 @@ client.Ready += () =>
                                 Title = tweet.Author.Name,
                                 ThumbnailUrl = tweet.Author.ProfileImageUrl,
                                 Color = Color.Blue,
-                                Description = tweet.Text
+                                Description = tweet.Text,
+                                Url = "https://twitter.com/houshoumarine/status/" + tweet.Id
                             }.Build());
                             break;
                         }
@@ -128,7 +129,7 @@ client.Ready += () =>
                             await Task.Delay(2000);
                         }
                     } while (true);
-                }, new[] { UserOption.Profile_Image_Url });
+                }, null, new[] { UserOption.Profile_Image_Url }, null);
             }
             catch (Exception e)
             {
