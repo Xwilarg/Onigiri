@@ -119,7 +119,7 @@ client.Ready += () =>
                                 ThumbnailUrl = tweet.Author.ProfileImageUrl,
                                 Color = Color.Blue,
                                 Description = tweet.Text,
-                                Url = "https://twitter.com/houshoumarine/status/" + tweet.Id
+                                Url = "https://twitter.com/" + tweet.Author.Username + "/status/" + tweet.Id
                             }.Build());
                             break;
                         }
