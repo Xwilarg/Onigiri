@@ -9,4 +9,4 @@ Discord bot that keep you updated of all the new Hololive tweets
    - The Twitter token, you need to go to the [Twitter Developer Portal](https://developer.twitter.com/en)
 
 ## Preview
-![image](https://user-images.githubusercontent.com/20053454/117207818-af52d980-adf4-11eb-9780-821097c496cf.png)
+![image](https://user-images.githubusercontent.com/20053454/121754803-d1d3c300-cb15-11eb-9d23-ef2727a9c668.png)
